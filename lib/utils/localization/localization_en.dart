@@ -6,4 +6,7 @@ class LocalizationEN implements Localization {
 
   @override
   String get googleSignInLabel => "Google";
+
+  @override
+  String get facebookSignInLabel => "Facebook";
 }

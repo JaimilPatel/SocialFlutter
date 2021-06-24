@@ -16,6 +16,7 @@ dependencies:
   google_sign_in: ^5.0.4
   http: ^0.13.3
   intl: ^0.17.0
+  flutter_facebook_auth: ^3.5.0
 
 dev_dependencies:
   flutter_test:
