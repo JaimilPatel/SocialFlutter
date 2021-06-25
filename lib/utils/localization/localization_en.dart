@@ -9,4 +9,7 @@ class LocalizationEN implements Localization {
 
   @override
   String get facebookSignInLabel => "Facebook";
+
+  @override
+  String get twitterSignInLabel => "Twitter";
 }

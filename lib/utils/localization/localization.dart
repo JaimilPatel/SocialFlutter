@@ -37,4 +37,5 @@ abstract class Localization {
   String get appBarLabel;
   String get googleSignInLabel;
   String get facebookSignInLabel;
+  String get twitterSignInLabel;
 }

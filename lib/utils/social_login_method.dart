@@ -4,6 +4,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:socialflutter/ui/model/res_google_signin_model.dart';
 import 'package:socialflutter/utils/constants/app_constants.dart';
 import 'package:socialflutter/utils/constants/key_constants.dart';
+import 'package:socialflutter/utils/constants/social_keys.dart';
+import 'package:twitter_login/entity/auth_result.dart';
+import 'package:twitter_login/twitter_login.dart';
 
 import 'log_utils.dart';
 
@@ -35,13 +38,37 @@ void _facebookSignInProcess(BuildContext context) async {
   }
 }
 
+//Twitter SignIn Process
+void _twitterSignInProcess(BuildContext context) async {
+  TwitterLogin twitterLogin = TwitterLogin(
+    apiKey: SocialKeys.twitterApiKey,
+    apiSecretKey: SocialKeys.twitterApiSecretKey,
+    redirectURI: SocialKeys.twitterRedirectUri,
+  );
+  AuthResult authResult = await twitterLogin.login();
+  switch (authResult.status) {
+    case TwitterLoginStatus.loggedIn:
+      LogUtils.showLog("${authResult.authToken}");
+      break;
+    case TwitterLoginStatus.cancelledByUser:
+      LogUtils.showLog("${authResult.status}");
+      break;
+    case TwitterLoginStatus.error:
+    case null:
+      LogUtils.showLog("${authResult.status}");
+      break;
+  }
+}
+
 //Combine Social Authentication
 Future initiateSocialLogin(BuildContext context, String provider) async {
   try {
     if (provider == AppConstants.googleProvider) {
       _googleSignInProcess(context);
-    } else {
+    } else if (provider == AppConstants.facebookProvider) {
       _facebookSignInProcess(context);
+    } else if (provider == AppConstants.twitterProvider) {
+      _twitterSignInProcess(context);
     }
   } on Exception catch (e) {
     LogUtils.showLog("$e");

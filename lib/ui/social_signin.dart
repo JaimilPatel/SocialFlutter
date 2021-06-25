@@ -19,6 +19,7 @@ class SocialSignInScreenState extends State<SocialSignInScreen> {
         children: [
           _googleSignInButton(context),
           _facebookSignInButton(context),
+          _twitterSignInButton(context)
         ],
       ),
     ));
@@ -36,7 +37,15 @@ class SocialSignInScreenState extends State<SocialSignInScreen> {
   Widget _facebookSignInButton(BuildContext context) => ElevatedButton(
         child: Text(Localization.of(context)!.facebookSignInLabel),
         onPressed: () {
-          initiateSocialLogout(context, AppConstants.facebookProvider);
+          initiateSocialLogin(context, AppConstants.facebookProvider);
+        },
+      );
+
+  //Twitter SignIn Button
+  Widget _twitterSignInButton(BuildContext context) => ElevatedButton(
+        child: Text(Localization.of(context)!.twitterSignInLabel),
+        onPressed: () {
+          initiateSocialLogin(context, AppConstants.twitterProvider);
         },
       );
 }
