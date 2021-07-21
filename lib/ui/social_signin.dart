@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:socialflutter/utils/color_utils.dart';
 import 'package:socialflutter/utils/constants/app_constants.dart';
+import 'package:socialflutter/utils/constants/file_constants.dart';
+import 'package:socialflutter/utils/constants/size_constants.dart';
 import 'package:socialflutter/utils/localization/localization.dart';
+import 'package:socialflutter/utils/widgets/social_button.dart';
 
 import '../utils/social_login_method.dart';
 
@@ -14,38 +18,47 @@ class SocialSignInScreenState extends State<SocialSignInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text(Localization.of(context)!.appBarLabel),
+          centerTitle: true,
+          backgroundColor: ColorUtils.purpleColor,
+        ),
         body: SafeArea(
-      child: Column(
-        children: [
-          _googleSignInButton(context),
-          _facebookSignInButton(context),
-          _twitterSignInButton(context)
-        ],
-      ),
-    ));
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SocialButton(
+                onPressed: () {
+                  initiateSocialLogin(context, AppConstants.googleProvider);
+                },
+                providerName: FileConstants.icGoogle,
+                buttonColor: ColorUtils.whiteColor,
+                buttonText: Localization.of(context)!.googleSignInLabel,
+                buttonTextColor: ColorUtils.purpleColor,
+                height: SizeConstants.socialButtonSize,
+              ),
+              SocialButton(
+                onPressed: () {
+                  initiateSocialLogin(context, AppConstants.facebookProvider);
+                },
+                providerName: FileConstants.icFacebook,
+                buttonColor: ColorUtils.purpleColor,
+                buttonText: Localization.of(context)!.facebookSignInLabel,
+                buttonTextColor: ColorUtils.whiteColor,
+                height: SizeConstants.socialButtonSize,
+              ),
+              SocialButton(
+                onPressed: () {
+                  initiateSocialLogin(context, AppConstants.twitterProvider);
+                },
+                providerName: FileConstants.icTwitter,
+                buttonColor: ColorUtils.whiteColor,
+                buttonText: Localization.of(context)!.twitterSignInLabel,
+                buttonTextColor: ColorUtils.purpleColor,
+                height: SizeConstants.socialButtonSize,
+              ),
+            ],
+          ),
+        ));
   }
-
-  // Google SignIn Button
-  Widget _googleSignInButton(BuildContext context) => ElevatedButton(
-        child: Text(Localization.of(context)!.googleSignInLabel),
-        onPressed: () {
-          initiateSocialLogin(context, AppConstants.googleProvider);
-        },
-      );
-
-  //Facebook SignIn Button
-  Widget _facebookSignInButton(BuildContext context) => ElevatedButton(
-        child: Text(Localization.of(context)!.facebookSignInLabel),
-        onPressed: () {
-          initiateSocialLogin(context, AppConstants.facebookProvider);
-        },
-      );
-
-  //Twitter SignIn Button
-  Widget _twitterSignInButton(BuildContext context) => ElevatedButton(
-        child: Text(Localization.of(context)!.twitterSignInLabel),
-        onPressed: () {
-          initiateSocialLogin(context, AppConstants.twitterProvider);
-        },
-      );
 }

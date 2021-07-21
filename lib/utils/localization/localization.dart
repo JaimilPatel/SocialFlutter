@@ -34,8 +34,8 @@ abstract class Localization {
     return Localizations.of<Localization>(context, Localization);
   }
 
-  String get appBarLabel;
   String get googleSignInLabel;
   String get facebookSignInLabel;
   String get twitterSignInLabel;
+  String get appBarLabel;
 }

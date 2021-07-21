@@ -6,4 +6,5 @@ class KeyConstants {
   static const String googleToken = "token";
   static const String facebookUserDataFields =
       "name,email,picture.width(200),birthday,friends,gender,link";
+  static const String emailKey = 'email';
 }
