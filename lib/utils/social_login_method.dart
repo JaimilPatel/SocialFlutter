@@ -71,28 +71,13 @@ void _twitterSignInProcess(BuildContext context) async {
           textColor: Colors.white);
       break;
     case TwitterLoginStatus.cancelledByUser:
-      ProgressDialogUtils.dismissProgressDialog();
-      LogUtils.showLog("${authResult.status}");
-      Fluttertoast.showToast(
-          msg: authResult.status.toString(),
-          backgroundColor: Colors.blue,
-          textColor: Colors.white);
+      _showFailureResult(authResult);
       break;
     case TwitterLoginStatus.error:
-      ProgressDialogUtils.dismissProgressDialog();
-      LogUtils.showLog("${authResult.status}");
-      Fluttertoast.showToast(
-          msg: authResult.status.toString(),
-          backgroundColor: Colors.blue,
-          textColor: Colors.white);
+      _showFailureResult(authResult);
       break;
     case null:
-      ProgressDialogUtils.dismissProgressDialog();
-      LogUtils.showLog("${authResult.status}");
-      Fluttertoast.showToast(
-          msg: authResult.status.toString(),
-          backgroundColor: Colors.blue,
-          textColor: Colors.white);
+      _showFailureResult(authResult);
       break;
   }
 }
@@ -123,4 +108,14 @@ Future initiateSocialLogout(BuildContext context, String provider) async {
   } on Exception catch (e) {
     LogUtils.showLog("$e");
   }
+}
+
+//Common Failure Result Method
+void _showFailureResult(AuthResult authResult) {
+  ProgressDialogUtils.dismissProgressDialog();
+  LogUtils.showLog("${authResult.status}");
+  Fluttertoast.showToast(
+      msg: authResult.status.toString(),
+      backgroundColor: Colors.blue,
+      textColor: Colors.white);
 }
