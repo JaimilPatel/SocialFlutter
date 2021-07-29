@@ -1,6 +1,6 @@
 # Social Authentication in Customized Flutter Applications.
 <b>Let's get authenticate users through social platforms...</b><br> 
-<b>Visit :</b> https://medium.com/@jaimil.dev8819/social-authentication-in-flutter-using-google-facebook-twitter-5c972bff17f3
+<b>Visit :</b> https://medium.com/flutter-community/social-authentication-in-customized-flutter-applications-5c972bff17f3
 
 <b>You can see whole implementation in below images.</b>
 
